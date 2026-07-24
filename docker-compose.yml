@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+
+  # ── MAIA Flask App ──────────────────────────────
+  maia:
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - mysql_db
+    volumes:
+      - ./data:/app/data       # datasets + vectorstore
+      - ./models:/app/models   # trained model files
+    restart: unless-stopped
+
+  # ── MySQL Database ──────────────────────────────
+  mysql_db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: maia_db
+      MYSQL_USER: maia_user
+      MYSQL_PASSWORD: maia_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

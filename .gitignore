@@ -1,0 +1,59 @@
+# ==========================================
+# Sensitive & Environment Files (Crucial!)
+# ==========================================
+.env
+.env.local
+*.env
+*.pem
+*.key
+
+# ==========================================
+# Python Cache & Build Artifacts
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==========================================
+# Virtual Environments
+# ==========================================
+venv/
+.venv/
+env/
+ENV/
+
+# ==========================================
+# IDEs & Text Editors
+# ==========================================
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ==========================================
+# Operating System Junk
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# Optional: Large Models & Datasets
+# ==========================================
+# Uncomment if you store large model weights locally
+# *.bin
+# *.pt
+# *.onnx
+# *.h5
+
+venv/
+.venv/
+env/
+__pycache__/
+.idea/
+.env
+data/
