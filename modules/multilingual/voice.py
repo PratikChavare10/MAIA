@@ -74,6 +74,5 @@ def voice_to_text(audio_path: str) -> str:
             return rnnt_result
 
 
-print(voice_to_text("audio1.mp3"))
 
 
