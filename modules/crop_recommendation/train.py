@@ -1,14 +1,4 @@
-"""
-modules/crop_recommendation/train.py
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-WHAT TO ADD BEFORE RUNNING:
-1. Download dataset from Kaggle:
-   → https://www.kaggle.com/datasets/atharvaingle/crop-recommendation-dataset
-2. Save as: data/crop_recommendation/Crop_recommendation.csv
 
-HOW TO RUN:
-   python modules/crop_recommendation/train.py
-"""
 
 import pandas as pd
 import numpy as np

@@ -1,29 +1,10 @@
-"""
-modules/weather/fetch.py
-━━━━━━━━━━━━━━━━━━━━━━━
-WHAT TO ADD:
-1. .env मध्ये WEATHER_API_KEY add करा
-   Get from: https://openweathermap.org → My API Keys
 
-HOW TO USE:
-   from modules.weather.fetch import get_weather
-   result = get_weather("Pune")
-"""
 
 import requests
 from config import WEATHER_API_KEY
 
 def get_weather(city: str) -> dict:
-    """
-    OpenWeatherMap API वरून weather fetch करतो
 
-    Input:
-        city (str) → e.g. "Pune", "Nashik", "Nagpur"
-
-    Output:
-        dict → {temperature, humidity, rain_forecast,
-                farming_advice, description}
-    """
     # ADD: WEATHER_API_KEY .env मध्ये असणे आवश्यक आहे
     if not WEATHER_API_KEY:
         return {
@@ -82,8 +63,8 @@ def get_weather(city: str) -> dict:
             "farming_advice": "Could not fetch weather. Check internet and API key.",
             "description":    "Unknown"
         }
-print(get_weather("Pune"))
-print(get_weather("Nagpur"))
-print(get_weather("Sangli"))
-print(get_weather("Kolhapur"))
+# print(get_weather("Pune"))
+# print(get_weather("Nagpur"))
+# print(get_weather("Sangli"))
+# print(get_weather("Kolhapur"))
 
