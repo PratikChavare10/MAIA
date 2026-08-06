@@ -47,7 +47,7 @@ def rag_search(query: str) -> dict:
 
 
 
-    # Messages तयार करणे
+    # Messages
     messages = [
         SystemMessage(
             content=(

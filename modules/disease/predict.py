@@ -29,7 +29,7 @@ model.load_state_dict(checkpoint['model_state_dict'])
 model.to(device)
 model.eval()  # Set model to evaluation mode
 
-# 4. Define the inference transforms (must match validation preprocessing)
+# 4. Define the inference transforms
 inference_transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -42,16 +42,16 @@ def predict_disease(image_path):
     abs_image_path = os.path.abspath(image_path)
     print(f"Loading image from: {abs_image_path}")
 
-    # 1. Path चेक करा
+    # 1. Path
     if not os.path.exists(abs_image_path):
         raise FileNotFoundError(f"Image not found at {abs_image_path}")
 
-    # 2. Safe PIL Reading (Lazy Loading टाळण्यासाठी image.load() वापरा)
+    # 2. Safe PIL Reading
     with Image.open(abs_image_path) as img:
-        img.load()  # Image मेमरीमध्ये फोर्सफुली लोड करा
+        img.load()  # Image
         image = img.convert('RGB')
 
-    print("Image loaded successfully!")  # <-- आता हे १००% प्रिंट होईल!
+    print("Image loaded successfully!")  
 
     # 3. Transform & Inference
     input_tensor = inference_transform(image).unsqueeze(0).to(device)
@@ -70,8 +70,7 @@ def predict_disease(image_path):
 
     return {"disease": predicted_label, "confidence": confidence_score}
 
-# --- Example Usage ---
-# Replace with the path to a real test image on your machine or Colab
+
 # test_image_path = 'image2.jpg'
 #
 # print(predict_disease(test_image_path))

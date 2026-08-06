@@ -167,16 +167,7 @@ async def api_chat_stream(
     yield_days_to_harvest: Optional[str] = Form(None),
     user: dict = Depends(get_current_user)
 ):
-    """
-    Flow:
-      1. If `audio` given (mic) -> voice_to_text() gives (text, language).
-      2. Else -> detect_language(text) on the typed text.
-      3. If language != English -> translate_to_english() gives the query
-         used to build the prediction prompt; `language` is passed through
-         so chat_node instructs the LLM to answer back in that language.
-      4. Save user message (raw text) to db.py, stream the workflow reply,
-         save the AI reply (already in the target language) once done.
-    """
+    
     user_id = user["user_id"]
     text    = text.strip()
 
@@ -202,7 +193,7 @@ async def api_chat_stream(
                 "soil_type": yield_soil or "Black",
                 "area": float(yield_area or 2),
                 "fertilizer": yield_fertilizer_used,
-                "region": str(yield_region or "North"),  # FIX: String ठेवायचे आहे, float नाही!
+                "region": str(yield_region or "North"), 
                 "weather_condition": str(yield_weather or "Sunny"),
                 "irrigation_used": yield_irrigation_used,
                 "rainfall": float(yield_rainfall or 650.0),
@@ -236,7 +227,7 @@ async def api_chat_stream(
 
     # English query drives the prediction/prompt-building nodes; the LLM is
     # separately told (via `language`) to answer back in the user's language.
-    if language and language.lower() not in ("en", "english"):
+    if language and language.lower() not in ("en", "English"):
         user_query = translate_to_english(text) if text else text
     else:
         user_query = text

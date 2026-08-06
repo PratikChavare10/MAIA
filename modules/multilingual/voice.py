@@ -23,7 +23,7 @@ _whisper_model=_load()
 def voice_to_text(audio_path: str) -> dict[str, Any]:
     result = _whisper_model.transcribe(audio_path, fp16=False)
     if result["language"]=="en":
-        return {"language":result["language"], "text":result["text"].strip()}
+        return {"language":"English", "text":result["text"].strip()}
     else:
         # ==========================================
         # 3. INDIC LANGUAGES ASR (Using AI4Bharat Conformer)
@@ -71,8 +71,18 @@ def voice_to_text(audio_path: str) -> dict[str, Any]:
             # print(ctc_result)
             print("\n[RNNT Decoding]:")
             print(result["language"])
-            rnnt_result = indic_model(wav, "mr", "rnnt")
-            return {"language":result["language"], "text":rnnt_result}
+            rnnt_result = indic_model(wav, result["language"], "rnnt")
+
+            lan=rnnt_result["language"]
+            if result["language"] == "mr":
+                lan="Marathi"
+            elif result["language"] == "hi":
+                lan="Hindi"
+            elif result["language"] == "te":
+                lan="Telugu"
+            else:
+                lan="English"
+            return {"language":lan, "text":rnnt_result}
 
 
 

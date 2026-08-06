@@ -1,5 +1,3 @@
-
-
 import joblib
 import numpy as np
 from config import CROP_REC_MODEL_PATH, CROP_REC_LE_PATH, CROP_REC_SC_PATH

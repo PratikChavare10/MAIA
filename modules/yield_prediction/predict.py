@@ -35,14 +35,12 @@ def predict_yield(
         irrigation_used: bool = True,  # Fallback default
         days_to_harvest: int = 120  # Fallback default
 ) -> Dict[str, Union[float, str]]:
-    print("hello")
     """
     Accepts input parameters, builds a single-row DataFrame,
     applies exact training transformations, and runs prediction.
     """
     # 1. Load trained artifacts
     trans, le_crop, le_soil, le_weather, model = load_artifacts()
-    print("chavare")
 
 
     # 2. Convert incoming values into a pandas DataFrame matching exact training feature names
@@ -57,8 +55,7 @@ def predict_yield(
         'Soil_Type': soil_type,
         'Weather_Condition': weather_condition
     }])
-    print("by")
-    print(raw_df)
+   
 
     # 3. Label encode categorical string columns
     raw_df['crop_encoded'] = le_crop.transform(raw_df['Crop'])
@@ -67,7 +64,7 @@ def predict_yield(
     print("1")
     # 4. Drop original categorical string columns to match X before ColumnTransformer
     X = raw_df.drop(columns=['Crop', 'Soil_Type', 'Weather_Condition'])
-    print("2")
+    
 
 
     # 5. Transform using ColumnTransformer
@@ -75,12 +72,12 @@ def predict_yield(
 
     # 6. Predict yield per hectare (Voting Regressor)
     yield_per_hectare = float(model.predict(X_trans)[0])
-    print("3")
+    
 
 
     # 7. Calculate total yield for the total area
     total_yield = yield_per_hectare * area
-    print("pratik")
+    
 
     # Structured result without LSTM fields
     return {

@@ -1,16 +1,3 @@
-"""
-config.py — Central Configuration File for MAIA
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-HOW TO ADD YOUR KEYS:
-1. Copy .env → .env
-2. Fill in your API keys in .env
-3. This file automatically loads them
-
-WHAT TO ADD HERE:
-- New API keys → add os.getenv("YOUR_KEY")
-- New model paths → add a new PATH variable
-- New settings → add at the bottom
-"""
 
 import os
 from dotenv import load_dotenv

@@ -1,8 +1,4 @@
-"""
-MAIA — auth helpers: password hashing (bcrypt) + JWT tokens.
-Frontend (Streamlit) calls /api/auth/login, gets a token back, and sends it
-as `Authorization: Bearer <token>` on every other request.
-"""
+
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional

@@ -28,7 +28,7 @@ def ingest_documents():
     print(f"\n Loaded {len(all_docs)} pages from {len(pdf_files)} PDFs")
 
     # ── Split into chunks ────────────────────────
-    # ADD: chunk_size adjust करा जर answers too short/long येत असतील
+    # ADD: chunk_size adjust
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=50

@@ -53,20 +53,6 @@ def get_weather(token, city):
 
 
 def stream_chat(token, result_holder=None, **form_data):
-    """
-    form_data: mode, text, city, thread_id, soil_*, yield_*  (all strings)
-    plus optional `files` dict, e.g. {"image": (name, bytes, mime)} or
-    {"audio": (name, bytes, mime)}.
-
-    Yields token strings as they arrive — pass directly to st.write_stream().
-
-    If `result_holder` (a plain dict) is given, the thread_id from the
-    backend's final 'done' event is written into result_holder["thread_id"]
-    once streaming finishes. The caller uses this to keep
-    st.session_state.thread_id in sync — otherwise every message looks
-    like a brand-new thread to the backend, and follow-up questions never
-    actually continue the same conversation.
-    """
     files = form_data.pop("files", None)
     with requests.post(
         f"{BASE_URL}/api/chat/stream",

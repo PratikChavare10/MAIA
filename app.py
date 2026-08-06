@@ -218,15 +218,7 @@ def send_query(extra: dict, image_bytes, text: str = None, audio_bytes: bytes = 
 
     st.session_state.messages.append({"role": "assistant", "content": full_reply})
 
-    # Keep our thread_id in sync with the backend's. Without this, thread_id
-    # stayed None forever, so EVERY message looked like "start of a new
-    # thread" to the backend (no real follow-up continuity), and the old
-    # `if thread_id is None: st.rerun()` fired after every single message —
-    # which combined with st.chat_input()'s submit-then-rerun timing caused
-    # the same message to get reprocessed ("response keeps repeating").
-    # No st.rerun() here at all now — the messages above already render in
-    # this same script run, so one isn't needed. The sidebar's thread list
-    # will pick up the new thread on the next natural rerun.
+    
     backend_thread_id = result_holder.get("thread_id")
     if backend_thread_id is not None:
         st.session_state.thread_id = backend_thread_id
@@ -248,11 +240,7 @@ def chat_page():
     audio_value = st.audio_input("🎤 Or record your question")
     text_value  = st.chat_input("Type your question...")
 
-    # st.audio_input keeps returning the SAME recording on every rerun until
-    # the user re-records — it does NOT reset to None by itself. Without a
-    # dedupe check here, that stale value keeps re-triggering send_query()
-    # on every rerun (looks like it "runs continuously"), and because it's
-    # checked first, it also blocks typed text from ever being processed.
+    
     new_audio_bytes = None
     if audio_value is not None:
         audio_bytes = audio_value.getvalue()          # safe to call repeatedly, unlike .read()

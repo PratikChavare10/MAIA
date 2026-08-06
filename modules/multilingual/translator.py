@@ -5,7 +5,15 @@ from deep_translator import GoogleTranslator
 def detect_language(text: str) -> str:
 
     try:
-        return detect(text)
+        lang= detect(text)
+        if lang == "mr":
+            lang="Marathi"
+        elif lang  == "hi":
+            lan = "Hindi"
+        elif lang == "te":
+            lan = "Telugu"
+        else:
+            lan = "English"
     except Exception:
         return "en"   # Default to English
 

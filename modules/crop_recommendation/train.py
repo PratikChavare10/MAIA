@@ -1,5 +1,3 @@
-
-
 import pandas as pd
 import numpy as np
 import tensorflow as tf
@@ -13,7 +11,7 @@ import joblib
 from config import CROP_REC_DATASET, CROP_REC_MODEL_PATH, CROP_REC_LE_PATH, CROP_REC_SC_PATH
 
 # ── Load Dataset ─────────────────────────────────
-# ADD: Dataset download केल्यावरच हे run करा
+# ADD: Dataset download 
 df = pd.read_csv(CROP_REC_DATASET)
 print(f"Dataset shape: {df.shape}")
 print(f"Crops: {df['label'].unique()}")
